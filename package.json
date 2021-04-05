@@ -1,7 +1,7 @@
 {
-  "name": "20201024_Piranha",
+  "name": "20210505Typescript",
   "version": "0.0.0",
-  "description": "20201024_Piranha",
+  "description": "20210505Typescript",
   "main": "app.js",
   "author": {
     "name": ""
@@ -13,7 +13,7 @@
     "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
   },
   "devDependencies": {
-    "@types/node": "^8.0.14",
+    "@types/node": "^8.10.66",
     "mocha": "^8.3.2",
     "ts-node": "^9.1.1",
     "typescript": "^3.9.9"
