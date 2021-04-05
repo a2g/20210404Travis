@@ -388,7 +388,7 @@ exports.game = game;
 
 console.log('Hello world');
 
-function sleep(milliseconds) {
+function sleep(milliseconds:number) {
     const date = Date.now();
     let currentDate = null;
     do {
