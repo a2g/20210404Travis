@@ -1,5 +1,5 @@
 import assert = require('assert');
-import { GetDisplayName } from '../AllClasses';
+import { GetDisplayName } from '../GetDisplayName';
 
 describe("GetDisplayName Suite", () => {
     it("TestAllNamesSoFar", () => {

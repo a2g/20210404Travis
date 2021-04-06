@@ -1,6 +1,6 @@
 //Typescript Unit test
 import assert = require('assert');
-import { TruthTable } from "./../AllClasses";
+import { TruthTable } from "../TruthTable";
 
 
 describe("TruthTable test", () => {
