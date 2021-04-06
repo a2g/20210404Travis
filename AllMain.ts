@@ -1,8 +1,18 @@
+import { stringify } from "querystring";
 import { GameRuleEnforcerCallbacksInterface, RowOfSheet, GetThreeStringsFromCommand, GetDisplayName, Colors, TruthTable, ValidateRowsOfSheet, ParseRowsFromSheet } from "./AllClasses";
 
 export class GameRuleEnforcer {
     public readonly Examine = 0;
-    constructor() { }
+    constructor() {
+        this.callbacks = new PlayerAI(this);
+        this.listOfItems = new Array<string>();
+        this.listOfActions = new Array<string>();
+        this.listOfItemVisibilities = new Array<boolean>();
+        this.listOfActionVisibilities = new Array<boolean>();
+        this.itemVsItemHandlers = new Array<Array<Array<string>>>();
+        this.actionVsItemHandlers = new Array<Array<Array<string>>>();    
+     }
+
     Initialize(rows: Array<RowOfSheet>, arrayOfActions: Array<string>) {
 
         // 1. item visibilities based on rows passed in
@@ -93,7 +103,7 @@ export class GameRuleEnforcer {
         const indexOfItem1: number = this.GetIndexOfItem(command[1]);
         const indexOfItem2: number = this.GetIndexOfItem(command[2]);
 
-        let scriptsToRun: string[] = null;
+        let scriptsToRun: string[] = new Array<string>();
         if (indexOfAction > -1 && indexOfItem1 > -1) {
             scriptsToRun = this.actionVsItemHandlers[indexOfAction][indexOfItem1];
         } else if (indexOfItem1 > -1 && indexOfItem2 > -1 && indexOfAction < 0) {
@@ -229,6 +239,8 @@ export class GameReporter {
         else if (itemName.startsWith("o")) {
             return this.Obj(itemName);
         }
+        // shouldn't happen for now
+        return "";
     }
 
     private Obj(itemName: string): string {
@@ -328,7 +340,7 @@ export class PlayerAI implements GameRuleEnforcerCallbacksInterface {
 
     }
 
-    GetNextCommandOrNull(): string[] {
+    GetNextCommand(): string[] {
         const use = this.useCommmandsTried.GetNextGuess();
         if (use[0] !== -1) {
             this.useCommmandsTried.SetColumnRow(use[0], use[1]);
@@ -340,7 +352,7 @@ export class PlayerAI implements GameRuleEnforcerCallbacksInterface {
             this.itemActionCommmandsTried.SetColumnRow(allOtherActions[0], allOtherActions[1]);
             return [this.game.GetAction(allOtherActions[0]), this.game.GetItem(allOtherActions[1]), ""];
         }
-        return null;
+        return [];;
     }
 
     OnItemVisbilityChange(number: number, newValue: boolean, nameForDebugging: string): void {
@@ -424,12 +436,12 @@ const result = ValidateRowsOfSheet(rowsOfGame, actions, isactionose);
 if (result === "ok") {
     GameRuleEnforcer.GetInstance().Initialize(rowsOfGame, actions);
     const ai: PlayerAI = new PlayerAI(GameRuleEnforcer.GetInstance());
-    for (let command: string[] = ai.GetNextCommandOrNull(); ; command = ai.GetNextCommandOrNull()) {
+    for (let command: string[] = ai.GetNextCommand(); ; command = ai.GetNextCommand()) {
 
-        if (command === null) {
+        if (command.length==0) {
             // null command means ai can't find another guess.
             // so lets just see what's going on here
-            command = ai.GetNextCommandOrNull();
+            command = ai.GetNextCommand();
             break;
         }
         GameReporter.GetInstance().ReportCommand(command);

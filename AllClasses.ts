@@ -97,7 +97,7 @@ export class TruthTable {
         let i = 0;
         rowNamesAndInitialVisibilities.forEach((row) => {
             const name: string = row[0];
-            const file = new SingleFileData(name, false)
+            const file = new SingleFileData(name, false);
             this.rowAndColumnDetailsCombined.set(i, file);
 
             // now after we fave set false, we call SetRowOrColumnVisibility, which keeps track of counts.
@@ -122,19 +122,31 @@ export class TruthTable {
     SetColumnRow(x: number, y: number): void {
         if (this.theActualTicks[x][y] === false) {
             this.theActualTicks[x][y] = true;
-            this.rowAndColumnDetailsCombined.get(x + this.ColumnsStartHere).tickCount++;
-            this.rowAndColumnDetailsCombined.get(y).tickCount++;
+            let columnObject = this.rowAndColumnDetailsCombined.get(x + this.ColumnsStartHere);
+            let rowObject = this.rowAndColumnDetailsCombined.get(y);
+            if (!columnObject)
+                throw RangeError("bad column " + x);
+            if (!rowObject)
+                throw RangeError("bad row " + y);
+            columnObject.tickCount++;
+            rowObject.tickCount++;
         }
     }
     GetNumberOfCellsInARow(): number { return this.numberOfCellsInARow; }
     GetNumberOfCellsInAColumn(): number { return this.numberOfCellsInAColumn; }
 
     IsRowFullyChecked(row: number): boolean {
-        return this.rowAndColumnDetailsCombined[row].tickCount === this.GetNumberOfCellsInARow();
+        const rowObject = this.rowAndColumnDetailsCombined.get(row);
+        if (!rowObject)
+            throw RangeError("" + row);
+        return rowObject.tickCount === this.GetNumberOfCellsInARow();
     }
 
     IsColumnFullyChecked(column: number): boolean {
-        return this.rowAndColumnDetailsCombined[column + this.ColumnsStartHere].tickCount === this.GetNumberOfCellsInAColumn();
+        const col = this.rowAndColumnDetailsCombined.get(column + this.ColumnsStartHere);
+        if (!col)
+            throw RangeError("" + column + this.ColumnsStartHere);
+        return col.tickCount === this.GetNumberOfCellsInAColumn();
     }
 
     GetVisibilitiesForColumnOrRow(file: number): Array<boolean> {
@@ -142,12 +154,18 @@ export class TruthTable {
         if (file >= this.ColumnsStartHere) {
 
             for (let row = 0; row < this.GetNumberOfCellsInARow(); row++) {
-                array.push(this.rowAndColumnDetailsCombined.get(row).isVisible);
+                const rowObject = this.rowAndColumnDetailsCombined.get(row);
+                if (!rowObject)
+                    throw RangeError("" + row);
+                array.push(rowObject.isVisible);
             }
         } else {
             // its actually a row
             for (let col = 0; col < this.GetNumberOfCellsInAColumn(); col++) {
-                array.push(this.rowAndColumnDetailsCombined.get(col + this.ColumnsStartHere).isVisible);
+                const columnObject = this.rowAndColumnDetailsCombined.get(col + this.ColumnsStartHere);
+                if (!columnObject)
+                    throw RangeError("" + col);
+                array.push(columnObject.isVisible);
             }
         }
         return array;
@@ -189,7 +207,10 @@ export class TruthTable {
 
             const column = file - this.ColumnsStartHere;
             for (let row = 0; row < this.GetNumberOfCellsInARow(); row++) {
-                if (this.rowAndColumnDetailsCombined.get(row).isVisible === false)
+                const rowObject = this.rowAndColumnDetailsCombined.get(row);
+                if (!rowObject)
+                    throw RangeError("" + row);
+                if (rowObject.isVisible === false)
                     continue;// if its not visible
                 if (this.theActualTicks[column][row] === true)
                     continue;// if its already checked
@@ -200,7 +221,10 @@ export class TruthTable {
             // its actually a row
             const row = file;
             for (let col = 0; col < this.GetNumberOfCellsInAColumn(); col++) {
-                if (this.rowAndColumnDetailsCombined.get(col + this.ColumnsStartHere).isVisible === false)
+                const columnObject = this.rowAndColumnDetailsCombined.get(col + this.ColumnsStartHere);
+                if (!columnObject)
+                    throw RangeError("" + col);
+                if (columnObject.isVisible === false)
                     continue;// if its not visible
                 if (this.theActualTicks[col][row] === true)
                     continue;// if its already checked
@@ -229,14 +253,20 @@ export class TruthTable {
             if (this.IsColumn(pair[0])) {
                 const actualColumn = pair[0] - this.ColumnsStartHere;
                 for (let row = 0; row < this.GetNumberOfCellsInARow(); row++) {
-                    if (this.rowAndColumnDetailsCombined.get(row).isVisible) {
+                    const rowObject = this.rowAndColumnDetailsCombined.get(row);
+                    if (!rowObject)
+                        throw RangeError("" + row);
+                    if (rowObject.isVisible) {
                         ticks += this.theActualTicks[actualColumn][row] ? 1 : 0;
                     }
                 }
             } else {
                 const actualRow = pair[0];
                 for (let col = 0; col < this.GetNumberOfCellsInAColumn(); col++) {
-                    if (this.rowAndColumnDetailsCombined.get(col + this.ColumnsStartHere).isVisible)
+                    const columnObject = this.rowAndColumnDetailsCombined.get(col + this.ColumnsStartHere);
+                    if (!columnObject)
+                        throw RangeError("" + col);
+                    if (columnObject.isVisible)
                         ticks += this.theActualTicks[col][actualRow] ? 1 : 0;
                 }
             }
@@ -281,9 +311,12 @@ export class TruthTable {
     }
 
     private SetRowOrColumnVisibility(index: number, isVisible: boolean) {
-        if (this.rowAndColumnDetailsCombined.get(index).isVisible !== isVisible) {
+        const rowOrColumn = this.rowAndColumnDetailsCombined.get(index);
+        if (!rowOrColumn)
+            throw RangeError("" + index);
+        if (rowOrColumn != null && rowOrColumn.isVisible !== isVisible) {
             // we only change it if its actually a change, because we we want to count visibilities below
-            this.rowAndColumnDetailsCombined.get(index).isVisible = isVisible;
+            rowOrColumn.isVisible = isVisible;
             if (this.IsColumn(index)) {
                 this.numberOfVisibleColumns += isVisible ? 1 : -1;
             }
