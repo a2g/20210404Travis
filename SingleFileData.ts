@@ -9,5 +9,3 @@ export class SingleFileData {
     tickCount: number;
     isVisible: boolean;
 };
-
-module.exports = SingleFileData;

@@ -33,17 +33,17 @@ export function ValidateRowsOfSheet(rows: RowOfSheet[], actionArray: Array<strin
             const obj1: string = parts[1];
             const obj2: string = len > 2 ? parts[2] : "";
 
-            let result = LogAndReturnError(actions.has(Action), "the Actionss containment test with: '" + Action + "'in " + command, isActionose);
+            let result = LogAndReturnError(actions.has(Action), `the Actionss containment test with: '${Action}' in ${command})`, isActionose);
             if (IsOk(result)) {
-                result = LogAndReturnError(names.has(obj1), "the Object containment test with: '" + obj1 + "' " + command, isActionose);
+                result = LogAndReturnError(names.has(obj1), `the Object containment test with: '${obj1}' ${command})`, isActionose);
                 if (obj1 === rowObject)
-                    result = LogAndReturnError(false, "due to cyclical-dependency with '" + obj1 + "' in " + command, isActionose);
+                    result = LogAndReturnError(false, `due to cyclical-dependency with: '${obj1}' ${command})`, isActionose);
                 if (IsOk(result) && obj2 !== "") {
-                    result = LogAndReturnError(names.has(obj2), "the Objects containment test with: '" + obj2 + "' in " + command, isActionose);
+                    result = LogAndReturnError(names.has(obj2), `the Objects containment test with: '${obj2}' ${command})`, isActionose);
                     if (Action !== "use")
-                        return LogAndReturnError(false, "due to 'use' not being the Action on a two object command: " + command, isActionose);
+                        return LogAndReturnError(false, `due to 'use' not being the Action on a two object command: ${command})`, isActionose);
                     if (obj2 === rowObject)
-                        result = LogAndReturnError(false, "due to cyclical-dependency with '" + obj2 + "' in command: " + command, isActionose);
+                        result = LogAndReturnError(false, `due to cyclical-dependency with: '${obj2}' ${command})`, isActionose);
                 }
             }
             if (!IsOk(result))
