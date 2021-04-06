@@ -1,5 +1,6 @@
 import { RowOfSheet } from "./RowOfSheet";
-import {GetThreeStringsFromCommand} from "./GetThreeStringsFromCommand";
+import { GetThreeStringsFromCommand } from "./GetThreeStringsFromCommand";
+import { IsOk } from './IsOk';
 
 export function ValidateRowsOfSheet(rows: RowOfSheet[], actionArray: Array<string>, isActionose = false): string {
     const names: Set<string> = new Set<string>();
