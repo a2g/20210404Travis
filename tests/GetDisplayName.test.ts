@@ -1,7 +1,7 @@
 import assert = require('assert');
 import { GetDisplayName } from '../GetDisplayName';
 
-describe("GetDisplayName Suite", () => {
+describe("GetDisplayName", () => {
     it("TestAllNamesSoFar", () => {
         assert.equal("water", GetDisplayName("oWater"));
         assert.equal("giant amazonian lilypad", GetDisplayName("oGiantAmazonianLilypad"));

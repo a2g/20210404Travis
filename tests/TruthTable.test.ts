@@ -3,7 +3,7 @@ import assert = require('assert');
 import { TruthTable } from "../TruthTable";
 
 
-describe("TruthTable test", () => {
+describe("TruthTable", () => {
     it("FindMostNearlyCompleteRowOrColumnCombined", () => {
 
         const sizeFour: [string, boolean][] = [["a", true], ["b", true], ["c", true], ["d", true]];

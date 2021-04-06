@@ -6,7 +6,7 @@ import { RowOfSheet } from "../RowOfSheet";
 const actions: Array<string> = ["examine", "grab"];
 
 
-describe("ValidateRowsOfSheet test", () => {
+describe("ValidateRowsOfSheet", () => {
     it("TestInitKeywordIsOk", () => {
         const r1 = new RowOfSheet();
         r1.name = "oWater";

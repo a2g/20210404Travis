@@ -3,7 +3,7 @@ import assert = require('assert');
 import { ParseRowsFromSheet } from "../ParseRowsFromSheet";
 import { RowOfSheet } from "../RowOfSheet";
 
-describe("TestRowsAndColumnsAreParsedOk Suite", () => {
+describe("ParseRowsFromSheet", () => {
     it("TestRowsAndColumnsAreParsedOk", () => {
         const t = "\t";
         const blah = "" +
