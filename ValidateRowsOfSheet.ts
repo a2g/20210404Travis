@@ -1,6 +1,7 @@
 import { RowOfSheet } from "./RowOfSheet";
 import { GetThreeStringsFromCommand } from "./GetThreeStringsFromCommand";
 import { IsOk } from './IsOk';
+import { LogAndReturnError } from './LogAndReturnError'
 
 export function ValidateRowsOfSheet(rows: RowOfSheet[], actionArray: Array<string>, isActionose = false): string {
     const names: Set<string> = new Set<string>();
