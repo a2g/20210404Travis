@@ -1,0 +1,14 @@
+{
+	"objects": [
+	],
+	"transactions": [
+		{
+			"inputA": "compass",
+			"inputB": "map"
+		},
+		{
+			"inputA": "compass",
+			"inputB": "map"
+		}
+	]
+}
