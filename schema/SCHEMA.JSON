@@ -5,13 +5,16 @@
 	"type": "object",
 	"properties": {
 		"objects": {
+			
 			"type": "array",
+			"minItems": 2,
 			"items": {
 				"type": "string"
 			}
 		},
 		"transactions": {
 			"type": "array",
+			"minItems": 2,
 			"items": {
 				"$ref": "#/definitions/transaction_type"
 			}
@@ -19,21 +22,29 @@
 	},
 	"definitions": {
 		"prop_type": {
-			"enum": [
-				"map",
-				"compass",
-				"flare",
-				"flaregun"
-			]
+			"enum": ["map",	"compass","flare","flaregun"]
 		},
-		"verb_type": {
-			"enum": [
-				"use",
-				"pickup"
-			]
+	    "verb_type": {
+			"enum": ["use",	"pickup"]
 		},
-		"a_transforms_b_into_c_type": {
-			"description": "A transforms B into C",
+
+		"transaction_type": {
+			"type": "object",
+			"properties": {
+				"a_and_b_generates_c": {
+					"$ref": "#/definitions/a_and_b_generates_c"
+				},
+				"creates_c": {
+					"$ref": "#/definitions/creates_c"
+				},
+				"a_transforms_b_into_c" :  {
+					"$ref": "#/definitions/a_transforms_b_into_c"
+				}
+			}
+		},
+		
+		"a_and_b_generates_c" : {
+				"description": "A and B generates C",
 			"properties": {
 				"inputA": {
 					"$ref": "#/definitions/prop_type"
@@ -43,18 +54,7 @@
 				}
 			}
 		},
-		"a_and_b_generates_c_type": {
-			"description": "A and B generates C",
-			"properties": {
-				"inputA": {
-					"$ref": "#/definitions/prop_type"
-				},
-				"inputB": {
-					"$ref": "#/definitions/prop_type"
-				}
-			}
-		},
-		"creates_c_type": {
+		"creates_c": {
 			"description": "Creates C",
 			"properties": {
 				"inputA": {
@@ -65,19 +65,16 @@
 				}
 			}
 		},
-		"transaction_type": {
-			"type": "object",
-			"required": [
-			],
-			"additionalProperties": {
-			},
-			"blah": {
-				"anyOf": {
-					"$ref": "#/definitions/a_transforms_b_into_c_type",
-					"$ref": "#/definitions/a_and_b_generates_c_type",
-					"$ref": "#/definitions/creates_c_type"
-				}
-			}
+		"a_transforms_b_into_c":{
+				"description": "A transforms B into C",
+					"properties": {
+						"inputA": {
+							"$ref": "#/definitions/prop_type"
+						},
+						"inputB": {
+							"$ref": "#/definitions/prop_type"
+						}
+					}
 		}
 	}
 }
