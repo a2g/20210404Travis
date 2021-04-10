@@ -1,0 +1,83 @@
+{
+	"$id": "https://example.com/arrays.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"description": "A representation of a person, company, organization, or place",
+	"type": "object",
+	"properties": {
+		"objects": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"transactions": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/transaction_type"
+			}
+		}
+	},
+	"definitions": {
+		"prop_type": {
+			"enum": [
+				"map",
+				"compass",
+				"flare",
+				"flaregun"
+			]
+		},
+		"verb_type": {
+			"enum": [
+				"use",
+				"pickup"
+			]
+		},
+		"a_transforms_b_into_c_type": {
+			"description": "A transforms B into C",
+			"properties": {
+				"inputA": {
+					"$ref": "#/definitions/prop_type"
+				},
+				"inputB": {
+					"$ref": "#/definitions/prop_type"
+				}
+			}
+		},
+		"a_and_b_generates_c_type": {
+			"description": "A and B generates C",
+			"properties": {
+				"inputA": {
+					"$ref": "#/definitions/prop_type"
+				},
+				"inputB": {
+					"$ref": "#/definitions/prop_type"
+				}
+			}
+		},
+		"creates_c_type": {
+			"description": "Creates C",
+			"properties": {
+				"inputA": {
+					"$ref": "#/definitions/prop_type"
+				},
+				"inputB": {
+					"$ref": "#/definitions/prop_type"
+				}
+			}
+		},
+		"transaction_type": {
+			"type": "object",
+			"required": [
+			],
+			"additionalProperties": {
+			},
+			"blah": {
+				"anyOf": {
+					"$ref": "#/definitions/a_transforms_b_into_c_type",
+					"$ref": "#/definitions/a_and_b_generates_c_type",
+					"$ref": "#/definitions/creates_c_type"
+				}
+			}
+		}
+	}
+}

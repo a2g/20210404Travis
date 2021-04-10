@@ -1,0 +1,13 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<json xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/javascript/20210505Typescript/schema/XSD.XSD">
+<objects>
+	<item></item>
+	<item></item>
+</objects>
+<transactions>
+	<transaction>
+		<inputA>flare</inputA>
+		<inputB>flaregun</inputB>
+	</transaction>
+</transactions>
+</json>
