@@ -4,41 +4,14 @@
 	<xs:element name="json">
 		<xs:complexType>
 			<xs:all>
-				<xs:element minOccurs="1" name="objects">
+				<xs:element minOccurs="0" name="transactions">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element minOccurs="2" maxOccurs="unbounded" name="item" type="xs:string"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element minOccurs="1" name="transactions">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element minOccurs="1" maxOccurs="unbounded" name="transaction">
+							<xs:element maxOccurs="unbounded" name="item">
 								<xs:complexType>
 									<xs:all>
-										<xs:element minOccurs="1" name="inputA">
-											<xs:simpleType>
-												<xs:restriction base="xs:string">
-													<xs:enumeration value="map"/>
-													<xs:enumeration value="compass"/>
-													<xs:enumeration value="flare"/>
-													<xs:enumeration value="flaregun"/>
-												</xs:restriction>
-											</xs:simpleType>
-										</xs:element>
-										<xs:element minOccurs="1" name="inputB">
-											<xs:simpleType>
-												<xs:restriction base="xs:string">
-													<xs:enumeration value="map"/>
-													<xs:enumeration value="compass"/>
-													<xs:enumeration value="flare"/>
-													<xs:enumeration value="flaregun"/>
-												</xs:restriction>
-											</xs:simpleType>
-										</xs:element>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="item"/>
 									</xs:all>
-									<xs:anyAttribute processContents="skip"/>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>

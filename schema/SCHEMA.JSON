@@ -57,88 +57,26 @@
 				"inv-electromagnets"
 			]
 		},
+		"type_type": {
+			"enum": [
+				"prop_is_picked_up",
+				"open_prop_with_inv_reveals_prop",
+				"inv_becomes_inv_via_losing_inv",
+				"prop_becomes_prop_via_losing_inv",
+				"prop_becomes_prop_via_keeping_inv",
+				"prop_becomes_prop_via_losing_prop",
+				"prop_becomes_prop_via_keeping_prop",
+				"both_a_and_b_generate_c",
+				"combined_to_create_inv"
+			]
+		},
 		"transaction_type": {
 			"type": "object",
 			"properties": {
-				"prop_is_picked_up": {
-					"description": "the prop has been picked up",
-					"properties": {
-						"input": { "$ref": "#/definitions/prop_type" },
-						"output": { "$ref": "#/definitions/inv_type" }
-					}
-				},
-				"open_prop_with_inv_reveals_prop": {
-					"description": "open a with b reveals c",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/prop_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/prop_type" }
-					}
-				},
-				"inv_becomes_inv(via_losing_inv)": {
-					"description": "both a & b generate c (nothing lost)",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/inv_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/inv_type" }
-					}
-				},
-				"prop_becomes_prop(via_losing_inv)": {
-					"description": "the powerpoint has now become plugged in amp",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/prop_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/prop_type" }
-					}
-				},
-			    "prop_becomes_prop_(via_keeping_inv)": {
-					"description": "the powerpoint has now become plugged in amp",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/prop_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/prop_type" }
-					}
-				},
-				"prop_becomes_prop(via_keeping_prop)": {
-					"description": "A transforms B into C (b is lost)",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/prop_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/inv_type" }
-					}
-				},
-				"prop_becomes_prop(via_losing_prop)": {
-					"description": "A transforms B into C (b is lost)",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/prop_type" },
-						"inputB": { "$ref": "#/definitions/prop_type" },
-						"output": { "$ref": "#/definitions/prop_type" }
-					}
-				},
-				"both_a_and_b_generate_c": {
-					"description": "both a & b generate c (nothing lost)",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/prop_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/prop_type" }
-					}
-				},
-				"both_a_and_b_generate_c_allinvs": {
-					"description": "both a & b generate c (nothing lost)",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/inv_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/inv_type" }
-					}
-				},
-				"creates_c": {
-					"description": "creates c (a & b are lost)",
-					"properties": {
-						"inputA": { "$ref": "#/definitions/inv_type" },
-						"inputB": { "$ref": "#/definitions/inv_type" },
-						"output": { "$ref": "#/definitions/inv_type" }
-					}
-				}
+				"type": { "$ref": "#/definitions/type_type" },
+				"inputA": { "$ref": "#/definitions/inv_type" },
+				"inputB": { "$ref": "#/definitions/inv_type" },
+				"output": { "$ref": "#/definitions/inv_type" }
 			}
 		}
 	}
