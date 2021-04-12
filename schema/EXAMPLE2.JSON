@@ -1,6 +1,8 @@
 {
 	"transactions": [
 		{
+			"type": "prop_is_picked_up"
+		},
 			"prop_is_picked_up": {
 				"input": "prop-screwdriver",
 				"output": "inv-screwdriver"
@@ -30,6 +32,6 @@
 				"inputB": "inv-needle",
 				"output": "inv-pump with needle adapter"
 			}
-		}
+		
 	]
 }

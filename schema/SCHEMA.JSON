@@ -77,6 +77,14 @@
 				"inputA": { "$ref": "#/definitions/inv_type" },
 				"inputB": { "$ref": "#/definitions/inv_type" },
 				"output": { "$ref": "#/definitions/inv_type" }
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [ "prop_is_picked_up" ]
+					}
+				},
+				"required": [ "foo" ]
 			}
 		}
 	}
