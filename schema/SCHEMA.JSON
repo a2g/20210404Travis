@@ -4,77 +4,142 @@
 	"description": "A representation of a person, company, organization, or place",
 	"type": "object",
 	"properties": {
-		"objects": {
-			
-			"type": "array",
-			"minItems": 2,
-			"items": {
-				"type": "string"
-			}
-		},
 		"transactions": {
 			"type": "array",
-			"minItems": 2,
-			"items": {
-				"$ref": "#/definitions/transaction_type"
-			}
+			"minItems": 1,
+			"items": { "$ref": "#/definitions/transaction_type" }
 		}
 	},
 	"definitions": {
+		"verb_type": {
+			"enum": [
+				"use",
+				"pick-up"
+			]
+		},
 		"prop_type": {
-			"enum": ["map",	"compass","flare","flaregun"]
+			"enum": [
+				"prop-screwdriver",
+				"prop-radio",
+				"prop-radio tube",
+				"prop-broken amp",
+				"prop-powerpoint",
+				"prop-plugged-in amp",
+				"prop-death-by-guitar",
+				"prop-death-by-slamdunk",
+				"prop-lowered backboard",
+				"prop-raised backboard",
+				"prop-accelerated vacuum tube",
+				"prop-off, magged-up vacuum tube",
+				"prop-on, magged-up vacuum tube",
+				"prop-exposed vacuum tube pipe 1",
+				"prop-exposed vacuum tube pipe 2",
+				"prop-exposed vacuum tube pipe 3",
+				"prop-three phase powerpoint",
+				"prop-tube system topology button"
+			]
 		},
-	    "verb_type": {
-			"enum": ["use",	"pickup"]
+		"inv_type": {
+			"enum": [
+				"inv-screwdriver",
+				"inv-radio tube",
+				"inv-broken amp",
+				"inv-fixed amp",
+				"inv-guitar",
+				"inv-inflated ball",
+				"inv-pole hook",
+				"inv-deflated ball",
+				"inv-pump with needle adapter",
+				"inv-needle",
+				"inv-pump with bike adapter",
+				"inv-jar of protons",
+				"inv-vacuum tubes",
+				"inv-electromagnets"
+			]
 		},
-
 		"transaction_type": {
 			"type": "object",
 			"properties": {
-				"a_and_b_generates_c": {
-					"$ref": "#/definitions/a_and_b_generates_c"
+				"prop_is_picked_up": {
+					"description": "the prop has been picked up",
+					"properties": {
+						"input": { "$ref": "#/definitions/prop_type" },
+						"output": { "$ref": "#/definitions/inv_type" }
+					}
+				},
+				"open_prop_with_inv_reveals_prop": {
+					"description": "open a with b reveals c",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/prop_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/prop_type" }
+					}
+				},
+				"inv_becomes_inv(via_losing_inv)": {
+					"description": "both a & b generate c (nothing lost)",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/inv_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/inv_type" }
+					}
+				},
+				"prop_becomes_prop(via_losing_inv)": {
+					"description": "the powerpoint has now become plugged in amp",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/prop_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/prop_type" }
+					}
+				},
+			    "prop_becomes_prop_(via_keeping_inv)": {
+					"description": "the powerpoint has now become plugged in amp",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/prop_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/prop_type" }
+					}
+				},
+				"prop_becomes_prop(via_keeping_prop)": {
+					"description": "A transforms B into C (b is lost)",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/prop_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/inv_type" }
+					}
+				},
+				"prop_becomes_prop(via_losing_prop)": {
+					"description": "A transforms B into C (b is lost)",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/prop_type" },
+						"inputB": { "$ref": "#/definitions/prop_type" },
+						"output": { "$ref": "#/definitions/prop_type" }
+					}
+				},
+				"both_a_and_b_generate_c": {
+					"description": "both a & b generate c (nothing lost)",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/prop_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/prop_type" }
+					}
+				},
+				"both_a_and_b_generate_c_allinvs": {
+					"description": "both a & b generate c (nothing lost)",
+					"properties": {
+						"inputA": { "$ref": "#/definitions/inv_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/inv_type" }
+					}
 				},
 				"creates_c": {
-					"$ref": "#/definitions/creates_c"
-				},
-				"a_transforms_b_into_c" :  {
-					"$ref": "#/definitions/a_transforms_b_into_c"
-				}
-			}
-		},
-		
-		"a_and_b_generates_c" : {
-				"description": "A and B generates C",
-			"properties": {
-				"inputA": {
-					"$ref": "#/definitions/prop_type"
-				},
-				"inputB": {
-					"$ref": "#/definitions/prop_type"
-				}
-			}
-		},
-		"creates_c": {
-			"description": "Creates C",
-			"properties": {
-				"inputA": {
-					"$ref": "#/definitions/prop_type"
-				},
-				"inputB": {
-					"$ref": "#/definitions/prop_type"
-				}
-			}
-		},
-		"a_transforms_b_into_c":{
-				"description": "A transforms B into C",
+					"description": "creates c (a & b are lost)",
 					"properties": {
-						"inputA": {
-							"$ref": "#/definitions/prop_type"
-						},
-						"inputB": {
-							"$ref": "#/definitions/prop_type"
-						}
+						"inputA": { "$ref": "#/definitions/inv_type" },
+						"inputB": { "$ref": "#/definitions/inv_type" },
+						"output": { "$ref": "#/definitions/inv_type" }
 					}
+				}
+			}
 		}
 	}
 }
