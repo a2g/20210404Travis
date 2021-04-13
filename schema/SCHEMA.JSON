@@ -65,6 +65,7 @@
 				"prop2": { "$ref": "#/definitions/prop_type" },
 				"prop3": { "$ref": "#/definitions/prop_type" }
 			},
+			"required": [ "type" ],
 			"if": {
 				"properties": {
 					"type": {
@@ -79,7 +80,9 @@
 						]
 					}
 				},
-				"required": [ "inv1" ]
+				"then": {
+					"required": [ "inv1" ]
+				}
 			},
 			"if": {
 				"properties": {
@@ -91,7 +94,9 @@
 						]
 					}
 				},
-				"required": [ "inv2" ]
+				"then": {
+					"required": [ "inv2" ]
+				}
 			},
 			"if": {
 				"properties": {
@@ -103,7 +108,9 @@
 						]
 					}
 				},
-				"required": [ "inv3" ]
+				"then": {
+					"required": [ "inv3" ]
+				}
 			},
 			"if": {
 				"properties": {
@@ -118,13 +125,14 @@
 						]
 					}
 				},
-				"required": [ "prop1" ]
+				"then": {
+					"required": [ "prop1" ]
+				}
 			},
 			"if": {
 				"properties": {
 					"type": {
 						"enum": [
-							"prop_is_picked_up",
 							"open_prop_with_inv_reveals_prop",
 							"prop_becomes_prop_via_losing_inv",
 							"prop_becomes_prop_via_keeping_inv",
@@ -133,19 +141,22 @@
 						]
 					}
 				},
-				"required": [ "prop2" ]
+				"then": {
+					"required": [ "prop2" ]
+				}
 			},
 			"if": {
 				"properties": {
 					"type": {
 						"enum": [
-							"prop_is_picked_up",
 							"prop_becomes_prop_via_losing_prop",
 							"prop_becomes_prop_via_keeping_prop"
 						]
 					}
 				},
-				"required": [ "prop3" ]
+				"then": {
+					"required": [ "prop3" ]
+				}
 			}
 		},
 		"type_type": {
