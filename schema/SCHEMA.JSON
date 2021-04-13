@@ -12,9 +12,24 @@
 	},
 	"definitions": {
 		"verb_type": {
+			"enum": [ "use", "pick-up" ]
+		},
+		"inv_type": {
 			"enum": [
-				"use",
-				"pick-up"
+				"inv-screwdriver",
+				"inv-radio tube",
+				"inv-broken amp",
+				"inv-fixed amp",
+				"inv-guitar",
+				"inv-inflated ball",
+				"inv-pole hook",
+				"inv-deflated ball",
+				"inv-pump with needle adapter",
+				"inv-needle",
+				"inv-pump with bike adapter",
+				"inv-jar of protons",
+				"inv-vacuum tubes",
+				"inv-electromagnets"
 			]
 		},
 		"prop_type": {
@@ -39,23 +54,99 @@
 				"prop-tube system topology button"
 			]
 		},
-		"inv_type": {
-			"enum": [
-				"inv-screwdriver",
-				"inv-radio tube",
-				"inv-broken amp",
-				"inv-fixed amp",
-				"inv-guitar",
-				"inv-inflated ball",
-				"inv-pole hook",
-				"inv-deflated ball",
-				"inv-pump with needle adapter",
-				"inv-needle",
-				"inv-pump with bike adapter",
-				"inv-jar of protons",
-				"inv-vacuum tubes",
-				"inv-electromagnets"
-			]
+		"transaction_type": {
+			"type": "object",
+			"properties": {
+				"type": { "$ref": "#/definitions/type_type" },
+				"inv1": { "$ref": "#/definitions/inv_type" },
+				"inv2": { "$ref": "#/definitions/inv_type" },
+				"inv3": { "$ref": "#/definitions/inv_type" },
+				"prop1": { "$ref": "#/definitions/prop_type" },
+				"prop2": { "$ref": "#/definitions/prop_type" },
+				"prop3": { "$ref": "#/definitions/prop_type" }
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [
+							"prop_is_picked_up",
+							"open_prop_with_inv_reveals_prop",
+							"inv_becomes_inv_via_losing_inv",
+							"prop_becomes_prop_via_losing_inv",
+							"prop_becomes_prop_via_keeping_inv",
+							"inv1_and_inv2_generate_inv",
+							"inv1_and_inv2_create_an_inv"
+						]
+					}
+				},
+				"required": [ "inv1" ]
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [
+							"inv_becomes_inv_via_losing_inv",
+							"inv1_and_inv2_generate_inv",
+							"inv1_and_inv2_create_an_inv"
+						]
+					}
+				},
+				"required": [ "inv2" ]
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [
+							"inv_becomes_inv_via_losing_inv",
+							"inv1_and_inv2_generate_inv",
+							"inv1_and_inv2_create_an_inv"
+						]
+					}
+				},
+				"required": [ "inv3" ]
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [
+							"prop_is_picked_up",
+							"open_prop_with_inv_reveals_prop",
+							"prop_becomes_prop_via_losing_inv",
+							"prop_becomes_prop_via_keeping_inv",
+							"prop_becomes_prop_via_losing_prop",
+							"prop_becomes_prop_via_keeping_prop"
+						]
+					}
+				},
+				"required": [ "prop1" ]
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [
+							"prop_is_picked_up",
+							"open_prop_with_inv_reveals_prop",
+							"prop_becomes_prop_via_losing_inv",
+							"prop_becomes_prop_via_keeping_inv",
+							"prop_becomes_prop_via_losing_prop",
+							"prop_becomes_prop_via_keeping_prop"
+						]
+					}
+				},
+				"required": [ "prop2" ]
+			},
+			"if": {
+				"properties": {
+					"type": {
+						"enum": [
+							"prop_is_picked_up",
+							"prop_becomes_prop_via_losing_prop",
+							"prop_becomes_prop_via_keeping_prop"
+						]
+					}
+				},
+				"required": [ "prop3" ]
+			}
 		},
 		"type_type": {
 			"enum": [
@@ -66,26 +157,9 @@
 				"prop_becomes_prop_via_keeping_inv",
 				"prop_becomes_prop_via_losing_prop",
 				"prop_becomes_prop_via_keeping_prop",
-				"both_a_and_b_generate_c",
-				"combined_to_create_inv"
+				"inv1_and_inv2_generate_inv",
+				"inv1_and_inv2_create_an_inv"
 			]
-		},
-		"transaction_type": {
-			"type": "object",
-			"properties": {
-				"type": { "$ref": "#/definitions/type_type" },
-				"inputA": { "$ref": "#/definitions/inv_type" },
-				"inputB": { "$ref": "#/definitions/inv_type" },
-				"output": { "$ref": "#/definitions/inv_type" }
-			},
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [ "prop_is_picked_up" ]
-					}
-				},
-				"required": [ "foo" ]
-			}
 		}
 	}
 }

@@ -1,37 +1,39 @@
 {
 	"transactions": [
 		{
-			"type": "prop_is_picked_up"
+			"type": "prop_is_picked_up",
+			"prop1": "prop-screwdriver",
+			"inv1": "inv-screwdriver"
 		},
-			"prop_is_picked_up": {
-				"input": "prop-screwdriver",
-				"output": "inv-screwdriver"
-			},
-			"open_prop_with_inv_reveals_prop": {
-				"inputA": "prop-radio",
-				"inputB": "inv-screwdriver",
-				"outputC": "prop-radio tube"
-			},
-			"inv_becomes_inv(via_losing_inv)": {
-				"inputA": "inv-broken amp",
-				"inputB": "inv-radio tube",
-				"outputC": "inv-fixed amp"
-			},
-			"prop_becomes_prop(via_losing_inv)" : {
-				"inputA" : "prop-powerpoint",
-				"inputB" : "inv-fixed amp",
-				"output" : "prop-plugged-in amp"
-			},
-			"prop_becomes_prop(via_keeping_inv)" : {
-				"inputA" : "prop-raised backboard",
-				"inputB" : "inv-pole hook",
-				"output" : "prop-lowered backboard"
-			},
-			"inv_becomes_inv(via_losing_inv)": {
-				"inputA": "inv-pump with bike adapter",
-				"inputB": "inv-needle",
-				"output": "inv-pump with needle adapter"
-			}
-		
+		{
+			"type": "open_prop_with_inv_reveals_prop",
+			"prop1": "prop-radio",
+			"inv1": "inv-screwdriver",
+			"prop2": "prop-radio tube"
+		},
+		{
+			"type": "inv_becomes_inv_via_losing_inv",
+			"inv1": "inv-broken amp",
+			"inv2": "inv-fixed amp",
+			"inv3": "inv-radio tube"
+		},
+		{
+			"type": "prop_becomes_prop_via_losing_inv",
+			"prop1": "prop-powerpoint",
+			"prop2": "prop-plugged-in amp",
+			"inv1": "inv-fixed amp"
+		},
+		{
+			"type": "prop_becomes_prop_via_keeping_inv",
+			"prop1": "prop-raised backboard",
+			"prop2": "prop-lowered backboard",
+			"inv1": "inv-pole hook"
+		},
+		{
+			"type": "inv_becomes_inv_via_losing_inv",
+			"inv1": "inv-pump with bike adapter",
+			"inv2": "inv-needle",
+			"inv3": "inv-pump with needle adapter"
+		}
 	]
 }
