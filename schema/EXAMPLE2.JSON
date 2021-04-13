@@ -34,9 +34,6 @@
 			"inv1": "inv-pump with bike adapter",
 			"inv2": "inv-needle",
 			"inv3": "inv-pump with needle adapter"
-		},
-		{
-			"type": "prop_is_picked_up"
 		}
 	]
 }

@@ -59,6 +59,7 @@
 		},
 		"transaction_type": {
 			"type": "object",
+			"required": [ "type" ],
 			"properties": {
 				"type": { "$ref": "#/definitions/type_type" },
 				"inv1": { "$ref": "#/definitions/inv_type" },
@@ -68,99 +69,133 @@
 				"prop2": { "$ref": "#/definitions/prop_type" },
 				"prop3": { "$ref": "#/definitions/prop_type" }
 			},
-			"required": [ "type" ],
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [
-							"prop_is_picked_up",
-							"open_prop_with_inv_reveals_prop",
-							"inv_becomes_inv_via_losing_inv",
-							"prop_becomes_prop_via_losing_inv",
-							"prop_becomes_prop_via_keeping_inv",
-							"inv1_and_inv2_generate_inv",
-							"inv1_and_inv2_create_an_inv"
+			"allOf": [
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "prop_is_picked_up" }
+						}
+					},
+					"then": {
+						"required": [
+							"prop1",
+							"inv1"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "open_prop_with_inv_reveals_prop" }
+						}
+					},
+					"then": {
+						"required": [
+							"prop1",
+							"inv1",
+							"prop2"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "inv_becomes_inv_via_losing_inv" }
+						}
+					},
+					"then": {
+						"required": [
+							"inv1",
+							"inv2",
+							"inv3"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "prop_becomes_prop_via_losing_inv" }
+						}
+					},
+					"then": {
+						"required": [
+							"prop1",
+							"prop2",
+							"inv1"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "prop_becomes_prop_via_keeping_inv" }
+						}
+					},
+					"then": {
+						"required": [
+							"prop1",
+							"prop2",
+							"inv1"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "prop_becomes_prop_via_losing_prop" }
+						}
+					},
+					"then": {
+						"required": [
+							"prop1",
+							"prop2",
+							"prop3"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "prop_becomes_prop_via_keeping_prop" }
+						}
+					},
+					"then": {
+						"required": [
+							"prop1",
+							"prop2",
+							"prop3"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "inv1_and_inv2_generate_inv" }
+						}
+					},
+					"then": {
+						"required": [
+							"inv1",
+							"inv2",
+							"inv3"
+						]
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": { "const": "inv1_and_inv2_create_an_inv" }
+						}
+					},
+					"then": {
+						"required": [
+							"inv1",
+							"inv2",
+							"inv3"
 						]
 					}
 				}
-			},
-			"then": {
-				"required": [ "inv1" ]
-			},
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [
-							"inv_becomes_inv_via_losing_inv",
-							"inv1_and_inv2_generate_inv",
-							"inv1_and_inv2_create_an_inv"
-						]
-					}
-				}
-			},
-			"then": {
-				"required": [ "inv2" ]
-			},
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [
-							"inv_becomes_inv_via_losing_inv",
-							"inv1_and_inv2_generate_inv",
-							"inv1_and_inv2_create_an_inv"
-						]
-					}
-				}
-			},
-			"then": {
-				"required": [ "inv3" ]
-			},
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [
-							"prop_is_picked_up",
-							"open_prop_with_inv_reveals_prop",
-							"prop_becomes_prop_via_losing_inv",
-							"prop_becomes_prop_via_keeping_inv",
-							"prop_becomes_prop_via_losing_prop",
-							"prop_becomes_prop_via_keeping_prop"
-						]
-					}
-				}
-			},
-			"then": {
-				"required": [ "prop1" ]
-			},
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [
-							"open_prop_with_inv_reveals_prop",
-							"prop_becomes_prop_via_losing_inv",
-							"prop_becomes_prop_via_keeping_inv",
-							"prop_becomes_prop_via_losing_prop",
-							"prop_becomes_prop_via_keeping_prop"
-						]
-					}
-				}
-			},
-			"then": {
-				"required": [ "prop2" ]
-			},
-			"if": {
-				"properties": {
-					"type": {
-						"enum": [
-							"prop_becomes_prop_via_losing_prop",
-							"prop_becomes_prop_via_keeping_prop"
-						]
-					}
-				}
-			},
-			"then": {
-				"required": [ "prop3" ]
-			}
+			]
 		},
 		"type_type": {
 			"enum": [
