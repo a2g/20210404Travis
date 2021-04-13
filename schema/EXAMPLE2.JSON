@@ -35,6 +35,8 @@
 			"inv2": "inv-needle",
 			"inv3": "inv-pump with needle adapter"
 		},
-		{ "type": "inv1_and_inv2_create_an_inv" }
+		{
+			"type": "prop_is_picked_up"
+		}
 	]
 }

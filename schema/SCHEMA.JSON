@@ -12,7 +12,10 @@
 	},
 	"definitions": {
 		"verb_type": {
-			"enum": [ "use", "pick-up" ]
+			"enum": [
+				"use",
+				"pick-up"
+			]
 		},
 		"inv_type": {
 			"enum": [
@@ -79,10 +82,10 @@
 							"inv1_and_inv2_create_an_inv"
 						]
 					}
-				},
-				"then": {
-					"required": [ "inv1" ]
 				}
+			},
+			"then": {
+				"required": [ "inv1" ]
 			},
 			"if": {
 				"properties": {
@@ -93,10 +96,10 @@
 							"inv1_and_inv2_create_an_inv"
 						]
 					}
-				},
-				"then": {
-					"required": [ "inv2" ]
 				}
+			},
+			"then": {
+				"required": [ "inv2" ]
 			},
 			"if": {
 				"properties": {
@@ -107,10 +110,10 @@
 							"inv1_and_inv2_create_an_inv"
 						]
 					}
-				},
-				"then": {
-					"required": [ "inv3" ]
 				}
+			},
+			"then": {
+				"required": [ "inv3" ]
 			},
 			"if": {
 				"properties": {
@@ -124,10 +127,10 @@
 							"prop_becomes_prop_via_keeping_prop"
 						]
 					}
-				},
-				"then": {
-					"required": [ "prop1" ]
 				}
+			},
+			"then": {
+				"required": [ "prop1" ]
 			},
 			"if": {
 				"properties": {
@@ -140,10 +143,10 @@
 							"prop_becomes_prop_via_keeping_prop"
 						]
 					}
-				},
-				"then": {
-					"required": [ "prop2" ]
 				}
+			},
+			"then": {
+				"required": [ "prop2" ]
 			},
 			"if": {
 				"properties": {
@@ -153,10 +156,10 @@
 							"prop_becomes_prop_via_keeping_prop"
 						]
 					}
-				},
-				"then": {
-					"required": [ "prop3" ]
 				}
+			},
+			"then": {
+				"required": [ "prop3" ]
 			}
 		},
 		"type_type": {
