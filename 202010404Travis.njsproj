@@ -2,15 +2,16 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>20210505Typescript</Name>
-    <RootNamespace>20210505Typescript</RootNamespace>
+    <Name>202010404Travis</Name>
+    <RootNamespace>20210404Travis</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>99bf6564-3549-43c7-a4f7-d01276d1fc31</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectGuid>99bf6564-3549-43c7-a4f7-d01276d1fc33</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
     <StartupFile>
     </StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
