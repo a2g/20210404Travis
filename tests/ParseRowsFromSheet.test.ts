@@ -1,7 +1,7 @@
 //Typescript Unit test
 import assert = require('assert');
-import { ParseRowsFromSheet } from "../ParseRowsFromSheet";
-import { RowOfSheet } from "../RowOfSheet";
+import { ParseRowsFromSheet } from "../AllClasses";
+import { RowOfSheet } from "../AllClasses";
 
 describe("ParseRowsFromSheet", () => {
     it("TestRowsAndColumnsAreParsedOk", () => {

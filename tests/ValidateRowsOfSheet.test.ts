@@ -1,7 +1,7 @@
 //Typescript Unit test
 import assert = require('assert');
-import { ValidateRowsOfSheet } from "../ValidateRowsOfSheet";
-import { RowOfSheet } from "../RowOfSheet";
+import { ValidateRowsOfSheet } from "../AllClasses";
+import { RowOfSheet } from "../AllClasses";
 
 const actions: Array<string> = ["examine", "grab"];
 
