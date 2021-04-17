@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>04b3d37d-3cfa-447c-822a-a2d014080914</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>_Main.ts</StartupFile>
+    <StartupFile>app.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -52,7 +52,7 @@
     <TypeScriptCompile Include="tests\ValidateRowsOfSheet.test.ts" />
     <TypeScriptCompile Include="TruthTable.ts" />
     <TypeScriptCompile Include="ValidateRowsOfSheet.ts" />
-    <TypeScriptCompile Include="_Main.ts" />
+    <TypeScriptCompile Include="app.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="tests\" />

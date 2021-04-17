@@ -1,5 +1,5 @@
 import { TruthTable } from './TruthTable';
-import { GameRuleEnforcer } from './_Main';
+import { GameRuleEnforcer } from './app';
 import {
     GameRuleEnforcerCallbacksInterface
 } from './GameRuleEnforcerCallbacksInterface';
