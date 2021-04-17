@@ -46,9 +46,16 @@
     <TypeScriptCompile Include="PlayerAI.ts" />
     <TypeScriptCompile Include="RowOfSheet.ts" />
     <TypeScriptCompile Include="SingleFileData.ts" />
+    <TypeScriptCompile Include="tests\GetDisplayName.test.ts" />
+    <TypeScriptCompile Include="tests\ParseRowsFromSheet.test.ts" />
+    <TypeScriptCompile Include="tests\TruthTable.test.ts" />
+    <TypeScriptCompile Include="tests\ValidateRowsOfSheet.test.ts" />
     <TypeScriptCompile Include="TruthTable.ts" />
     <TypeScriptCompile Include="ValidateRowsOfSheet.ts" />
     <TypeScriptCompile Include="_Main.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
