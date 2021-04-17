@@ -2,18 +2,16 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>202010404Travis</Name>
-    <RootNamespace>20210404Travis</RootNamespace>
+    <Name>20210417Travis</Name>
+    <RootNamespace>20210417Travis</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>99bf6564-3549-43c7-a4f7-d01276d1fc33</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <ProjectGuid>04b3d37d-3cfa-447c-822a-a2d014080914</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>_Main.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -36,68 +34,22 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Game.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="GameReporter.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="GameRuleEnforcer.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="PlayerAI.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="Colors.ts" />
+    <TypeScriptCompile Include="Game.ts" />
+    <TypeScriptCompile Include="GameReporter.ts" />
+    <TypeScriptCompile Include="GameRuleEnforcer.ts" />
+    <TypeScriptCompile Include="GameRuleEnforcerCallbacksInterface.ts" />
+    <TypeScriptCompile Include="GetDisplayName.ts" />
+    <TypeScriptCompile Include="GetThreeStringsFromCommand.ts" />
+    <TypeScriptCompile Include="IsOk.ts" />
+    <TypeScriptCompile Include="LogAndReturnError.ts" />
+    <TypeScriptCompile Include="ParseRowsFromSheet.ts" />
+    <TypeScriptCompile Include="PlayerAI.ts" />
+    <TypeScriptCompile Include="RowOfSheet.ts" />
+    <TypeScriptCompile Include="SingleFileData.ts" />
+    <TypeScriptCompile Include="TruthTable.ts" />
     <TypeScriptCompile Include="ValidateRowsOfSheet.ts" />
     <TypeScriptCompile Include="_Main.ts" />
-    <TypeScriptCompile Include="Colors.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="GameRuleEnforcerCallbacksInterface.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="GetDisplayName.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="GetThreeStringsFromCommand.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="IsOk.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="LogAndReturnError.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ParseRowsFromSheet.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="RowOfSheet.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="SingleFileData.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="tests\ParseRowsFromSheet.test.ts">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="tests\GetDisplayName.test.ts">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="tests\TruthTable.test.ts">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="tests\ValidateRowsOfSheet.test.ts">
-      <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="TruthTable.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\" />
-    <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
