@@ -1,5 +1,4 @@
 import { Game } from './Game';
-//import { GameRuleEnforcer } from './GameRuleEnforcer';
 import { GameReporter } from './GameReporter';
 import { ParseRowsFromSheet } from "./ParseRowsFromSheet";
 import { ValidateRowsOfSheet } from "./ValidateRowsOfSheet";
@@ -7,7 +6,6 @@ import { PlayerAI } from './PlayerAI';
 import { RowOfSheet } from './RowOfSheet';
 import { GetThreeStringsFromCommand } from './GetThreeStringsFromCommand';
 import { GameRuleEnforcerCallbacksInterface } from './GameRuleEnforcerCallbacksInterface';
-
 
 const game = Game.GetInstance();
 module.exports = game
@@ -256,10 +254,10 @@ const blah = "" +
     "iMultiBone2" + t + "use iSkullAndBone2 iLeftCowFemur" + t + "Hide(iSkullAndBone2);Hide(iLeftCowFemur);" + t;
 
 
-const isactionose = false;
+const isVerbose = false;
 const rowsOfGame = ParseRowsFromSheet(blah);
 const actions: Array<string> = ["examine", "grab"];
-const result = ValidateRowsOfSheet(rowsOfGame, actions, isactionose);
+const result = ValidateRowsOfSheet(rowsOfGame, actions, isVerbose);
 
 if (result === "ok") {
     GameRuleEnforcer.GetInstance().Initialize(rowsOfGame, actions);

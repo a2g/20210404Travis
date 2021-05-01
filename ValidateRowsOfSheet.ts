@@ -3,7 +3,7 @@ import { GetThreeStringsFromCommand } from "./GetThreeStringsFromCommand";
 import { IsOk } from './IsOk';
 import { LogAndReturnError } from './LogAndReturnError'
 
-export function ValidateRowsOfSheet(rows: RowOfSheet[], actionArray: Array<string>, isActionose = false): string {
+export function ValidateRowsOfSheet(rows: RowOfSheet[], actionArray: Array<string>, isVerbose = false): string {
     const names: Set<string> = new Set<string>();
     rows.forEach((row: RowOfSheet) => {
         names.add(row.name);
@@ -28,22 +28,22 @@ export function ValidateRowsOfSheet(rows: RowOfSheet[], actionArray: Array<strin
             const parts: string[] = GetThreeStringsFromCommand(command);
             const len = parts.length;
             if (len < 2)
-                return LogAndReturnError(false, "'" + command + "' not having atleast two parts", isActionose);
+                return LogAndReturnError(false, "'" + command + "' not having atleast two parts", isVerbose);
             const Action: string = parts[0];
             const obj1: string = parts[1];
             const obj2: string = len > 2 ? parts[2] : "";
 
-            let result = LogAndReturnError(actions.has(Action), `the Actionss containment test with: '${Action}' in ${command})`, isActionose);
+            let result = LogAndReturnError(actions.has(Action), `the Actionss containment test with: '${Action}' in ${command})`, isVerbose);
             if (IsOk(result)) {
-                result = LogAndReturnError(names.has(obj1), `the Object containment test with: '${obj1}' ${command})`, isActionose);
+                result = LogAndReturnError(names.has(obj1), `the Object containment test with: '${obj1}' ${command})`, isVerbose);
                 if (obj1 === rowObject)
-                    result = LogAndReturnError(false, `due to cyclical-dependency with: '${obj1}' ${command})`, isActionose);
+                    result = LogAndReturnError(false, `due to cyclical-dependency with: '${obj1}' ${command})`, isVerbose);
                 if (IsOk(result) && obj2 !== "") {
-                    result = LogAndReturnError(names.has(obj2), `the Objects containment test with: '${obj2}' ${command})`, isActionose);
+                    result = LogAndReturnError(names.has(obj2), `the Objects containment test with: '${obj2}' ${command})`, isVerbose);
                     if (Action !== "use")
-                        return LogAndReturnError(false, `due to 'use' not being the Action on a two object command: ${command})`, isActionose);
+                        return LogAndReturnError(false, `due to 'use' not being the Action on a two object command: ${command})`, isVerbose);
                     if (obj2 === rowObject)
-                        result = LogAndReturnError(false, `due to cyclical-dependency with: '${obj2}' ${command})`, isActionose);
+                        result = LogAndReturnError(false, `due to cyclical-dependency with: '${obj2}' ${command})`, isVerbose);
                 }
             }
             if (!IsOk(result))

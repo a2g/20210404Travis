@@ -1,6 +1,6 @@
-export function LogAndReturnError(isOk: boolean, error: string, isActionose: boolean): string {
+export function LogAndReturnError(isOk: boolean, error: string, isVerbose: boolean): string {
     const errorString = (isOk ? "    (Yes! because it passed " : "    (shhhh! it FAILED ") + error;
-    if (isActionose || !isOk)
+    if (isVerbose || !isOk)
         console.log(errorString);
     return isOk ? "ok" : errorString;
 }
