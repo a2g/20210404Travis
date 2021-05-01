@@ -34,10 +34,9 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="schema\EXAMPLE2.JSON" />
+    <Content Include="schema\EXAMPLE2.JSON" >
       <SubType>Code</SubType>
     </Content>
-    <Content Include="schema\SCHEMA.JSON" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
